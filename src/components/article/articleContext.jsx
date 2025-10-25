@@ -11,14 +11,14 @@ import {
   ViewArticles,
 } from "../../api/api";
 import toast from "react-hot-toast";
-import { useUser } from "../../userContext";
+
 
 const ArticleContent = createContext(null);
 
 export const ArticleProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-    const {user:userId}=useUser()
-      console.log("userInfo",userInfo.userId)
+   
+
 
   const [allarticle, setAllArticleData] = useState([]);
   const [viewarticle, setViewArticle] = useState([]);

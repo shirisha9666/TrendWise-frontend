@@ -1,7 +1,7 @@
 import axios from "axios"
 
  const api = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL || "http://localhost:5001"
+    baseURL: import.meta.env.VITE_BACKEND_URL 
 })
 // users
 export const googleAuth = (code) => api.get(`/user/google?code=${encodeURIComponent(code)}`);
