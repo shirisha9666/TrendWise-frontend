@@ -1,0 +1,137 @@
+import React, { createContext, useContext, useEffect, useState } from "react";
+
+import axios from "axios";
+import {
+  addComment,
+  deleteArticle,
+  delteComment,
+  getAllArticles,
+  getCurrentUser,
+  getusercommenthistory,
+  ViewArticles,
+} from "../../api/api";
+import toast from "react-hot-toast";
+import { useUser } from "../../userContext";
+
+const ArticleContent = createContext(null);
+
+export const ArticleProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+    const {user:userId}=useUser()
+      console.log("userInfo",userInfo.userId)
+
+  const [allarticle, setAllArticleData] = useState([]);
+  const [viewarticle, setViewArticle] = useState([]);
+  const [delcommentdetails, setdelcommentDetails] = useState("");
+  const [allcomment, setAllComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const viewArticlesdata = async (id) => {
+    try {
+      const response = await ViewArticles(id);
+      if (response.status === 200) {
+        setViewArticle(response.data.article);
+      } else {
+        console.error("Failed to fetch articles:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      const mes = error.response.data.message;
+      toast.error(msg);
+      console.error("Error fetching articles:", error.message);
+      return [];
+    }
+  };
+
+  const getAllArticlesdata = async () => {
+    try {
+      const response = await getAllArticles();
+      if (response.status === 200) {
+        setAllArticleData(response.data.article);
+      } else {
+        console.error("Failed to fetch articles:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching articles:", error.message);
+      return [];
+    }
+  };
+
+  const deleteArticleData = async (id) => {
+    console.log("delete", id);
+    try {
+      const response = await deleteArticle(id);
+      if (response.status === 200) {
+        setdelcommentDetails(response.data.message);
+        await getAllArticlesdata();
+        toast.success(response.data.message || "Article Deleted successfully");
+      } else {
+        console.error("Failed to fetch articles:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching articles:", error.message);
+      return [];
+    }
+  };
+
+  const getusercomment = async (id) => {
+    try {
+      const response = await getusercommenthistory(id);
+
+      if (response.status === 200) {
+        setAllComments(response?.data?.commentHistroy);
+      } else {
+        console.error("Failed to fetch articles:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching articles:", error.message);
+      return [];
+    }
+  };
+
+  const deleteComment = async (id) => {
+    try {
+      const response = await delteComment(id);
+      if (response.status === 200) {
+        await  getusercomment(user._id)
+        toast.success(response.data.message || "Article Deleted successfully");
+      } else {
+        console.error("Failed to fetch articles:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      const msg = error.response.data.message;
+      console.error("Error fetching articles:", error.message);
+      console.error(msg || "Somthing wrong while deleting comment");
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    getAllArticlesdata();
+ 
+  }, []);
+
+  return (
+    <ArticleContent.Provider
+      value={{
+        user,
+        loading,
+        allarticle,
+        getAllArticlesdata,
+        viewArticlesdata,
+        viewarticle,
+        deleteArticleData,
+        deleteComment,
+        allcomment,
+        getusercomment,
+      }}
+    >
+      {children}
+    </ArticleContent.Provider>
+  );
+};
+
+export const useArticle = () => useContext(ArticleContent);
