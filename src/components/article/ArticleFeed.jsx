@@ -84,8 +84,8 @@ export default function ArticleFeed() {
           >
             {/* Image */}
             <img
-              onClick={() => navigate(`/article/${article?._id}`)}
-              src={article.img}
+              onClick={() => navigate(`/article/${article.slug}/${article?._id}`)}
+              src={article.media.images}
               alt={article.title}
               className="w-full h-64 object-cover cursor-pointer"
             />

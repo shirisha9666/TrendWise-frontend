@@ -38,8 +38,13 @@ const ArticleDetail = () => {
 
         {/* Right Image */}
         <div className="w-full flex justify-center items-center">
-          <img
+          {/* <img
             src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8="
+            alt="mountain"
+            className="rounded-xl w-full h-auto object-cover shadow-md"
+          /> */}
+           <img
+            src={viewarticle?.media?.images[0]}
             alt="mountain"
             className="rounded-xl w-full h-auto object-cover shadow-md"
           />

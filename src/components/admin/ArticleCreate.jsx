@@ -12,28 +12,28 @@ const ArticleCreate = () => {
   const {getAllArticlesdata}=useArticle()
   const navigate=useNavigate()
 
-  const handleSave = async () => {
-    try {
-      setLoading(true)
-      const response = await createArticle(contentType);
-      if (response.status === 200) {
+  // const handleSave = async () => {
+  //   try {
+  //     setLoading(true)
+  //     const response = await createArticle(contentType);
+  //     if (response.status === 200) {
      
-        setContentType("");
-        toast.success(response.data.message || "Article Created Successfully");
-       await getAllArticlesdata();
-       navigate("/")
+  //       setContentType("");
+  //       toast.success(response.data.message || "Article Created Successfully");
+  //      await getAllArticlesdata();
+  //      navigate("/")
 
-      } else {
-        console.error("Failed to fetch articles:", response.statusText);
-        return [];
-      }
-    } catch (error) {
-      console.error("Error fetching articles:", error.message);
-      return [];
-    }finally{
-      setLoading(false)
-    }
-  };
+  //     } else {
+  //       console.error("Failed to fetch articles:", response.statusText);
+  //       return [];
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching articles:", error.message);
+  //     return [];
+  //   }finally{
+  //     setLoading(false)
+  //   }
+  // };
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md max-w-md mx-auto mb-6">

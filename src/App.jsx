@@ -36,7 +36,7 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            <Route path="/article/:id" element={<ArticleDetail />} />
+            <Route path="/article/:slug/:id" element={<ArticleDetail />} />
             <Route path="/" element={<ArticleFeed />} />
             <Route path="/login" element={<GoogleAuthWrapper />} />
             <Route

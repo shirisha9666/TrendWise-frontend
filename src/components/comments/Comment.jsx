@@ -103,7 +103,7 @@ export default function UserHistoryComments() {
           <div>No Comments Found</div>
         ) : (
           allcomment.map((commentv) => {
-            console.log("commentv._id", commentv._id);
+            console.log("commentv", commentv);
             return (
               <div
                 key={commentv._id}
@@ -111,9 +111,10 @@ export default function UserHistoryComments() {
               >
                 {/* Image */}
                 <img
-                  onClick={() => navigate(`/article/${commentv.articleId._id}`)}
-                  src={commentv.img}
-                  alt={commentv.title}
+                  onClick={() => navigate(`/article/${commentv.slug}/${commentv.articleId._id}`)}
+                      src={commentv?.articleId?.meta?.ogImage || commentv?.articleId?.media?.images?.[0] || "/default.jpg"}
+  alt={commentv?.articleId?.title}
+
                   className="w-full h-64 object-cover cursor-pointer"
                 />
 

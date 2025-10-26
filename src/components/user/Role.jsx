@@ -15,10 +15,11 @@ const Role = () => {
   const handleSave = async () => {
     try {
       setLoading(true);
-      const userId = user._id;
+      const userId = user?._id;
       const data = {
+          role,
         userId,
-        role,
+      
       };
       console.log("data",data)
       const response = await registerRole(data);

@@ -1,27 +1,57 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useArticle } from "../article/articleContext";
+import { createArticle } from "../../api/api";
+import toast from "react-hot-toast";
 
 
 const AdminTable=()=>{
     const navigate=useNavigate()
       const { allarticle, getAllArticlesdata ,deleteArticleData} = useArticle();
+      const [loading,setLoading]=useState(false)
       const [articles, setArticles] = useState(["helloword","helo"]);
+
+
+       const handleSave = async () => {
+          try {
+            setLoading(true)
+            const response = await createArticle();
+            if (response.status === 200) {
+           
+              setContentType("");
+              toast.success(response.data.message || "Article Created Successfully");
+             await getAllArticlesdata();
+             navigate("/")
+      
+            } else {
+              console.error("Failed to fetch articles:", response.statusText);
+              return [];
+            }
+          } catch (error) {
+            console.error("Error fetching articles:", error.message);
+            return [];
+          }finally{
+            setLoading(false)
+          }
+        };
+      
     return(
-          <div className="bg-white p-4 rounded-lg shadow-md max-w-3xl mx-auto">
+          <div className="bg-white p-4 rounded-lg shadow-md  mx-auto">
             <div className="flex justify-between m-3">
         <h2 className="text-xl font-semibold mb-4">Existing Articles</h2>
             <button
-                    onClick={() => navigate("/article/create")}
+                    onClick={() => handleSave()}
                     className="px-3 py-1 bg-orange-100 text-yellow-800 
                     rounded-md hover:bg-orange-200 transition text-sm cursor-pointer"
                   >
-                    Create Article
+                    {loading?"Bot Creating Articls":"Create Article"}
+                    
                   </button>
                   </div>
         <table className="w-full table-auto border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
+                <th className="border border-gray-300 px-4 py-2 text-left">#</th>
               <th className="border border-gray-300 px-4 py-2 text-left">Title</th>
               <th className="border border-gray-300 px-4 py-2 text-left">Slug</th>
               <th className="border border-gray-300 px-4 py-2">Actions</th>
@@ -37,6 +67,7 @@ const AdminTable=()=>{
             )}
             {allarticle.map((article, index) => (
               <tr key={index} className="hover:bg-gray-50">
+                    <td className="border border-gray-300 px-4 py-2">{index+1}</td>
                 <td className="border border-gray-300 px-4 py-2">{article.title}</td>
                 <td className="border border-gray-300 px-4 py-2">{article.slug}</td>
                 <td className="border border-gray-300 px-4 py-2 flex gap-2 justify-center">
@@ -53,7 +84,7 @@ const AdminTable=()=>{
                     Delete
                   </button>
                         <button
-                    onClick={() => navigate(`/article/${article._id}`)}
+                    onClick={() => navigate(`/article/${article.slug}/${article?._id}`)}
                     className="px-3 py-1 bg-green-100 text-yellow-800 
                     rounded-md hover:bg-green-200 transition text-sm cursor-pointer"
                   >

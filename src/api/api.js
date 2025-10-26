@@ -10,7 +10,7 @@ export const registerRole = (data) => api.put(`/user/role`, data);
 export const googleAuth = (code) => api.get(`/user/google?code=${encodeURIComponent(code)}`);
 export const getAllArticles = () => api.get(`/article/all`);
 export const deleteArticle = (id) => api.delete(`/article/delete/${id}`);
-export const createArticle = (contentType) => api.post(`/article/create`,contentType);
+export const createArticle = () => api.post(`/article/create`);
 export const updateArticle = (id,contentType) => api.put(`/article/update/${id}`,{contentType});
 export const ViewArticles = (id) => api.get(`/article/get/${id}`);
 export const addComment = (id, data) =>api.post(`/comment/create/${id}`, data);

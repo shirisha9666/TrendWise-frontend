@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { getCurrentUser } from "../api/api";
 const Header = () => {
   const { user, fetchUser } = useUser();
+  console.log("user.Header",user)
   const [loading, setLoading] = useState(false);
   const logout = async () => {
     try {
