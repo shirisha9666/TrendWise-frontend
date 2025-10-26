@@ -38,7 +38,7 @@ function App() {
           <Routes>
             <Route path="/article/:slug/:id" element={<ArticleDetail />} />
             <Route path="/" element={<ArticleFeed />} />
-            <Route path="/login" element={<GoogleAuthWrapper />} />
+            <Route path="/auth/callback" element={<GoogleAuthWrapper />} />
             <Route
               path="/role"
               element={user ? <Role /> : <Navigate to="/" replace />}

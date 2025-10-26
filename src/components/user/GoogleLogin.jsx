@@ -30,11 +30,11 @@ const GoogleLogin = () => {
   //   flow: "auth-code",
   // });
   const googleLogin = useGoogleLogin({
-  onSuccess: responseGoogle,
-  onError: responseGoogle,
-  flow: "auth-code",
-  redirect_uri: import.meta.env.VITE_BACKEND_URL // exact deployed frontend URL
-});
+    onSuccess: responseGoogle,
+    onError: responseGoogle,
+    flow: "auth-code",
+    redirect_uri: `${import.meta.env.VITE_BACKEND_URL}/auth/callback`,
+  });
   return (
     <div className="h-50 flex items-center justify-center ">
       <button

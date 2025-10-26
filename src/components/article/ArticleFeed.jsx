@@ -105,7 +105,7 @@ export default function ArticleFeed() {
                 <div className="flex items-center gap-6 text-gray-500">
                   <button
                     onClick={() => {
-                   !user ? navigate("/login") : null
+                   !user ? navigate("/auth/callback") : null
                       likesarticles(article?._id)
                     }}
                     className="flex items-center gap-1 hover:text-red-500 transition cursor-pointer"
