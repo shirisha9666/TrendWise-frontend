@@ -15,6 +15,7 @@ const AdminTable = () => {
     try {
       setLoading(true);
       const response = await createArticle();
+       console.log("createArticle response:", response);
       if (response.status === 200) {
         toast.success(response.data.message || "Article Created Successfully");
         await getAllArticlesdata();
@@ -34,6 +35,7 @@ const AdminTable = () => {
     try {
       setEditLoading(id);
       const response = await updateArticle(id);
+       console.log("updateArticle response:", response);
       if (response.status === 200) {
         toast.success(response.data.message || "Article Updated Successfully");
         await getAllArticlesdata();

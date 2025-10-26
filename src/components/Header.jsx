@@ -13,7 +13,7 @@ const Header = () => {
       setLoading(true);
       localStorage.removeItem("user-info");
       await fetchUser();
- toast.success("LogOut Sccessfully");
+ toast.success("LogOut Successfully");
     } catch (error) {
       toast.error("Somthing went Wrong");
     } finally {

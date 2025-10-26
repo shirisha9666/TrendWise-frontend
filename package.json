@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
+    "@sparticuz/chromium": "^141.0.0",
     "@tailwindcss/vite": "^4.1.16",
     "axios": "^1.12.2",
+    "puppeteer-core": "^24.26.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.6.0",
