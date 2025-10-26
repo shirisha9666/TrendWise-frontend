@@ -91,23 +91,7 @@ export const ArticleProvider = ({ children }) => {
     }
   };
 
-  const deleteComment = async (id) => {
-    try {
-      const response = await delteComment(id);
-      if (response.status === 200) {
-        await  getusercomment(user._id)
-        toast.success(response.data.message || "Article Deleted successfully");
-      } else {
-        console.error("Failed to fetch articles:", response.statusText);
-        return [];
-      }
-    } catch (error) {
-      const msg = error.response.data.message;
-      console.error("Error fetching articles:", error.message);
-      console.error(msg || "Somthing wrong while deleting comment");
-      return [];
-    }
-  };
+ 
 
   useEffect(() => {
     getAllArticlesdata();
@@ -124,7 +108,7 @@ export const ArticleProvider = ({ children }) => {
         viewArticlesdata,
         viewarticle,
         deleteArticleData,
-        deleteComment,
+      
         allcomment,
         getusercomment,
       }}

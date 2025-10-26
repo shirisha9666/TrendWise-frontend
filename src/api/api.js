@@ -18,6 +18,7 @@ export const likeArticle = (id, userId) =>api.post(`/comment/like/${id}`, {userI
 
 export const getusercommenthistory= (id) => api.get(`/comment/all/${id}`);
 export const delteComment = (id) => api.delete(`/comment/delete/${id}`);
+export const updateComment = (id,data) => api.put(`/comment/update/${id}`,data);
 
 
 

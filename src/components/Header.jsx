@@ -25,13 +25,13 @@ const Header = () => {
 
         <div className="flex items-center gap-3">
       {/* If user not logged in */}
-      {!user && (
+      {/* {!user && (
         <a href="/login">
           <button className="hidden sm:inline px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm cursor-pointer">
             Login
           </button>
         </a>
-      )}
+      )} */}
 
       {/* If user is logged in and role is 'USER' */}
       {user?.role === "user" && (
