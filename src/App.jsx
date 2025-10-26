@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import ArticleDetail from "./components/article/ArticleDetail";
 import Header from "./components/Header";
 import ArticleFeed from "./components/article/ArticleFeed";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import GoogleLogin from "./components/user/GoogleLogin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import UserHistoryComments from "./components/comments/Comment";
@@ -15,7 +15,8 @@ import AdminTable from "./components/admin/AdminTable";
 import ArticleCreate from "./components/admin/ArticleCreate";
 import ArticleEdit from "./components/admin/ArticleEdit";
 import { useUser } from "./userContext";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import Role from "./components/user/Role";
 
 function App() {
   const { user } = useUser();
@@ -39,6 +40,11 @@ function App() {
             <Route path="/" element={<ArticleFeed />} />
             <Route path="/login" element={<GoogleAuthWrapper />} />
             <Route
+              path="/role"
+              element={user ? <Role /> : <Navigate to="/" replace />}
+            />
+
+            <Route
               path="/comment/history/:id"
               element={<UserHistoryComments />}
             />
@@ -56,7 +62,7 @@ function App() {
       </main>
 
       <Footer />
-           <Toaster />
+      <Toaster />
     </div>
   );
 }

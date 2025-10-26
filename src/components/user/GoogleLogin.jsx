@@ -17,7 +17,7 @@ const GoogleLogin = () => {
         const obj = { name, eamil, token, userId };
         localStorage.setItem("user-info", JSON.stringify(obj));
         await fetchUser();
-        navigate("/");
+        navigate("/role");
         console.log("result.data.user.......", result.data);
       }
     } catch (error) {

@@ -3,6 +3,9 @@ import axios from "axios"
  const api = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL 
 })
+
+// role
+export const registerRole = (data) => api.put(`/user/role`, data);
 // users
 export const googleAuth = (code) => api.get(`/user/google?code=${encodeURIComponent(code)}`);
 export const getAllArticles = () => api.get(`/article/all`);
