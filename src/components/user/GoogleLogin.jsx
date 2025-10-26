@@ -24,11 +24,17 @@ const GoogleLogin = () => {
       console.log("Erro while requesting google code:", error);
     }
   };
+  // const googleLogin = useGoogleLogin({
+  //   onSuccess: responseGoogle,
+  //   onError: responseGoogle,
+  //   flow: "auth-code",
+  // });
   const googleLogin = useGoogleLogin({
-    onSuccess: responseGoogle,
-    onError: responseGoogle,
-    flow: "auth-code",
-  });
+  onSuccess: responseGoogle,
+  onError: responseGoogle,
+  flow: "auth-code",
+  redirect_uri: import.meta.env.VITE_BACKEND_URL // exact deployed frontend URL
+});
   return (
     <div className="h-50 flex items-center justify-center ">
       <button
