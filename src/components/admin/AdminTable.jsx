@@ -106,7 +106,7 @@ const AdminTable = () => {
                   onClick={() => deleteArticleData(article._id)}
                   className="px-3 py-1 bg-red-100 text-red-800 rounded-md hover:bg-red-200 transition text-sm cursor-pointer"
                 >
-                  {adminDelloading===article._id?"Deleting":"Delete"}
+                  {adminDelloading===article._id?"Deleting...":"Delete"}
                   
                 </button>
                 <button
