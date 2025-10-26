@@ -33,7 +33,7 @@ const GoogleLogin = () => {
     onSuccess: responseGoogle,
     onError: responseGoogle,
     flow: "auth-code",
-    redirect_uri: `${import.meta.env.VITE_BACKEND_URL}/auth/callback`,
+    redirect_uri:import.meta.env.VITE_BACKEND_URL || "https://trendwise-frontend-cdoi.onrender.com",
   });
   return (
     <div className="h-50 flex items-center justify-center ">

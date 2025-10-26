@@ -53,26 +53,7 @@ export default function ArticleFeed() {
       return [];
     }
   };
-  const articles = [
-    {
-      id: 1,
-      title: "Exploring the Mountains",
-      desc: "Experience the breathtaking views and adventures that await in the highlands.",
-      img: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=",
-    },
-    {
-      id: 2,
-      title: "City Lights and Nightlife",
-      desc: "Discover the magic of city life and vibrant streets that never sleep.",
-      img: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=1000&q=80",
-    },
-    {
-      id: 3,
-      title: "Peaceful Beach Getaway",
-      desc: "Relax by the sea and enjoy calm sunsets with the sound of waves.",
-      img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=80",
-    },
-  ];
+
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gray-50 py-10 px-4">
@@ -115,7 +96,7 @@ export default function ArticleFeed() {
                   </button>
 
                   <button
-                    onClick={() => (!user ? navigate("/login") : null)}
+                    onClick={() => (!user ? navigate("/auth/callback") : null)}
                     className="flex items-center gap-1 hover:text-blue-500 transition cursor-pointer"
                   >
                     <FaComment />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useUser } from "../userContext";
 import toast from "react-hot-toast";
 import { getCurrentUser } from "../api/api";
+import { Link } from "react-router-dom";
 const Header = () => {
   const { user, fetchUser } = useUser();
   console.log("user.Header",user)
@@ -22,52 +23,7 @@ const Header = () => {
 
   console.log("user", user);
   return (
-    // <header className="bg-white shadow-sm">
-    //   <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-    //     <div className="flex items-center gap-3">
-    //       <div className="w-10 h-10 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold">
-    //         TW
-    //       </div>
-    //       <a href="/" className="text-xl font-semibold">
-    //         TrendWise
-    //       </a>
-    //     </div>
-
-    //     {/* <nav className="hidden sm:flex gap-4 items-center">
-    //       <a className="text-sm hover:text-blue-600" href="/">Home</a>
-    //       <a className="text-sm hover:text-blue-600" href="/#">Topics</a>
-    //       <a className="text-sm hover:text-blue-600" href="/#">About</a>
-    //     </nav> */}
-
-    //     <div className="flex items-center gap-3">
-    //       {/* If user is logged in and role is 'USER' */}
-    //       {user?.role === "user" && (
-    //         <a href={`/comment/history/${user?._id}`}>
-    //           <button className="hidden sm:inline px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm cursor-pointer">
-    //             Comment History
-    //           </button>
-    //         </a>
-    //       )}
-
-    //       {/* If user is logged in and role is 'ADMIN' */}
-    //       {user?.role === "admin" && (
-    //         <a href="/admin">
-    //           <button className="hidden sm:inline px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm cursor-pointer">
-    //             Admin
-    //           </button>
-    //         </a>
-    //       )}
-    //      {user&& <div>
-    //         <button
-    //           className="hidden sm:inline px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm cursor-pointer"
-    //           onClick={() => logout()}
-    //         >
-    //           {loading ? "logOut....." : "logOut"}
-    //         </button>
-    //       </div>}
-    //     </div>
-    //   </div>
-    // </header>
+    
       <header className="bg-white shadow-sm fixed top-0 left-0 w-full z-50 ">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* 🔹 Logo */}
@@ -75,9 +31,9 @@ const Header = () => {
           <div className="w-10 h-10 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold">
             TW
           </div>
-          <a href="/" className="text-xl font-semibold text-gray-800">
+          <Link to="/" className="text-xl font-semibold text-gray-800">
             TrendWise
-          </a>
+          </Link>
         </div>
 
         {/* 🔹 Desktop Nav */}
@@ -85,26 +41,27 @@ const Header = () => {
 
         {/* 🔹 User Buttons (Desktop) */}
         <div className="hidden sm:flex items-center gap-3">
-          {user?.role === "user" && (
-            <a href={`/comment/history/${user?._id}`}>
-              <button className="px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition">
-                Comment History
-              </button>
-            </a>
-          )}
+         
+{user?.role === "user" && (
+  <Link to={`/comment/history/${user._id}`}>
+    <button className="px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition cursor-pointer">
+      Comment History
+    </button>
+  </Link>
+)}
 
           {user?.role === "admin" && (
-            <a href="/admin">
-              <button className="px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition">
+            <Link to="/admin">
+              <button className="px-3 cursor-pointer py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition">
                 Admin
               </button>
-            </a>
+            </Link>
           )}
 
           {user && (
             <button
               onClick={() => logout()}
-              className="px-3 py-1.5 bg-red-500 text-white rounded-md text-sm hover:bg-red-600 transition"
+              className="px-3 py-1.5 bg-red-500 cursor-pointer text-white rounded-md text-sm hover:bg-red-600 transition"
             >
               {loading ? "Logging out..." : "Logout"}
             </button>
@@ -146,18 +103,18 @@ const Header = () => {
           <nav className="flex flex-col space-y-2 py-3 px-4">
       
             {user?.role === "user" && (
-              <a
-                href={`/comment/history/${user?._id}`}
+              <Link
+                to={`/comment/history/${user?._id}`}
                 className="text-sm text-gray-700 hover:text-blue-600"
               >
                 Comment History
-              </a>
+              </Link>
             )}
 
             {user?.role === "admin" && (
-              <a href="/admin" className="text-sm text-gray-700 hover:text-blue-600">
+              <Link to="/admin" className="text-sm text-gray-700 hover:text-blue-600">
                 Admin
-              </a>
+              </Link>
             )}
 
             {user && (

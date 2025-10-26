@@ -7,7 +7,8 @@ import Footer from "./components/Footer";
 import ArticleDetail from "./components/article/ArticleDetail";
 import Header from "./components/Header";
 import ArticleFeed from "./components/article/ArticleFeed";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
 import GoogleLogin from "./components/user/GoogleLogin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import UserHistoryComments from "./components/comments/Comment";
@@ -29,39 +30,65 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-8 mt-5">
-        {/* <ArticleFeed/> */}
+    // <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+    //   <Header />
+    //   <main className="flex-1 container mx-auto px-4 py-8 mt-5">
+    //     {/* <ArticleFeed/> */}
 
-        <BrowserRouter>
+    //     <Router>
+    //       <Routes>
+    //         <Route path="/article/:slug/:id" element={<ArticleDetail />} />
+    //         <Route path="/" element={<ArticleFeed />} />
+    //         <Route path="/auth/callback" element={<GoogleAuthWrapper />} />
+    //         <Route
+    //           path="/role"
+    //           element={user ? <Role /> : <Navigate to="/" replace />}
+    //         />
+
+    //         <Route
+    //           path="/comment/history/:id"
+    //           element={  <UserHistoryComments />
+    //           }
+    //         />
+    //         <Route
+    //           path="/admin"
+    //           element={
+    //              <AdminTable />
+    //           }
+    //         />
+    //       </Routes>
+    //     </Router>
+    //   </main>
+
+    //   <Footer />
+    //   <Toaster />
+    // </div>
+     <Router>
+      <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+        <Header />
+        <main className="flex-1 container mx-auto px-4 py-8 mt-5">
           <Routes>
-            <Route path="/article/:slug/:id" element={<ArticleDetail />} />
             <Route path="/" element={<ArticleFeed />} />
+            <Route path="/article/:slug/:id" element={<ArticleDetail />} />
             <Route path="/auth/callback" element={<GoogleAuthWrapper />} />
             <Route
               path="/role"
               element={user ? <Role /> : <Navigate to="/" replace />}
             />
-
             <Route
               path="/comment/history/:id"
-              element={  <UserHistoryComments />
-              }
+              element={user ? <UserHistoryComments /> : <Navigate to="/" replace />}
             />
             <Route
               path="/admin"
-              element={
-                 <AdminTable />
-              }
+              element={user?.role === "admin" ? <AdminTable /> : <Navigate to="/" replace />}
             />
           </Routes>
-        </BrowserRouter>
-      </main>
-
-      <Footer />
-      <Toaster />
-    </div>
+        </main>
+        <Footer />
+        <Toaster />
+      </div>
+    </Router>
   );
 }
 

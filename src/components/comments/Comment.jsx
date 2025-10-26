@@ -98,6 +98,9 @@ export default function UserHistoryComments() {
   }, []);
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gray-50 py-10 px-4">
+   <h1 className="text-2xl font-semibold text-gray-800 mb-4">
+  {user.name} Comment History
+</h1>
       <div className="w-full max-w-3xl space-y-8 overflow-y-auto">
         {allcomment.length === 0 ? (
           <div>No Comments Found</div>
