@@ -83,7 +83,8 @@ export default function ArticleFeed() {
               {/* Icons */}
               <div className="flex flex-col gap-2">
                 {/* Action Buttons */}
-                <div className="flex items-center gap-6 text-gray-500">
+                {user?.role==="user"&&
+                 <div className="flex items-center gap-6 text-gray-500">
                   <button
                     onClick={() => {
                    !user ? navigate("/auth/callback") : null
@@ -102,10 +103,11 @@ export default function ArticleFeed() {
                     <FaComment />
                     {/* <span className="text-sm">26</span> */}
                   </button>
-                </div>
+                </div>}
+               
 
                 {/* Comment Input - only if logged in */}
-                {user && (
+                {user?.role==="user" && (
                   <div className="flex gap-2 mt-2">
                     <input
                       type="text"

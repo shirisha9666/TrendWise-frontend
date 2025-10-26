@@ -16,12 +16,12 @@ const Role = () => {
     try {
       setLoading(true);
       const userId = user?._id;
+      const selectedRole = role.trim() === "" ? "user" : role;
       const data = {
-          role,
+        role: selectedRole,
         userId,
-      
       };
-      console.log("data",data)
+      console.log("data", data);
       const response = await registerRole(data);
       if (response.status === 200) {
         setRole("");
