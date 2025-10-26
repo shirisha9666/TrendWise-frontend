@@ -8,7 +8,7 @@ const AdminTable = () => {
   const navigate = useNavigate();
   const { allarticle, getAllArticlesdata, deleteArticleData } = useArticle();
   const [loading, setLoading] = useState(false);
-    const [editloading, setEditLoading] = useState(null);
+  const [editloading, setEditLoading] = useState(null);
   const [articles, setArticles] = useState(["helloword", "helo"]);
 
   const handleSave = async () => {
@@ -16,10 +16,8 @@ const AdminTable = () => {
       setLoading(true);
       const response = await createArticle();
       if (response.status === 200) {
-        setContentType("");
         toast.success(response.data.message || "Article Created Successfully");
         await getAllArticlesdata();
-        navigate("/");
       } else {
         console.error("Failed to fetch articles:", response.statusText);
         return [];
@@ -60,7 +58,7 @@ const AdminTable = () => {
           className="px-3 py-1 bg-orange-100 text-yellow-800 
                     rounded-md hover:bg-orange-200 transition text-sm cursor-pointer"
         >
-          {loading ? "Bot Creating Articls" : "Create Article"}
+          {loading ? "Crafting your article..." : "Generate with AI"}
         </button>
       </div>
       <table className="w-full table-auto border-collapse border border-gray-300">
@@ -98,8 +96,9 @@ const AdminTable = () => {
                   }}
                   className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-md hover:bg-yellow-200 transition text-sm cursor-pointer"
                 >
-                  {editloading===article._id?"Updating":"Update"}
-                  
+                  {editloading === article._id
+                    ? "Updating your article.."
+                    : "Update"}
                 </button>
                 <button
                   onClick={() => deleteArticleData(article._id)}

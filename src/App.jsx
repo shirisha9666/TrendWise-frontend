@@ -46,22 +46,13 @@ function App() {
 
             <Route
               path="/comment/history/:id"
-              element={
-                user?.role === "user" ? (
-                  <UserHistoryComments />
-                ) : (
-                  <Navigate to="/" replace />
-                )
+              element={  <UserHistoryComments />
               }
             />
             <Route
               path="/admin"
               element={
-                user?.role === "admin" ? (
-                  <AdminTable />
-                ) : (
-                  <Navigate to="/" replace />
-                )
+                 <AdminTable />
               }
             />
           </Routes>

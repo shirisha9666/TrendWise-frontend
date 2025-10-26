@@ -10,7 +10,7 @@ const ArticleDetail = () => {
   useEffect(() => {
     viewArticlesdata(id);
   }, [id]);
-  console.log("viewarticle",viewarticle)
+
   return (
     <div className="w-full flex flex-col items-center justify-center bg-gray-50 py-10 px-4">
       <section className="w-full max-w-5xl grid gap-10 md:grid-cols-2">
@@ -24,7 +24,7 @@ const ArticleDetail = () => {
           </p>
 
           {/* Icons */}
-          <div className="flex items-center gap-4 mt-4 text-gray-500">
+          {/* <div className="flex items-center gap-4 mt-4 text-gray-500">
             <button className="flex items-center gap-1 hover:text-red-500 transition">
               <FaHeart />
               <span className="text-sm">{viewarticle?.likes?.length || 5}</span>
@@ -33,16 +33,12 @@ const ArticleDetail = () => {
               <FaComment />
               <span className="text-sm">{viewarticle?.comment?.length || 1}</span>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Right Image */}
         <div className="w-full flex justify-center items-center">
-          {/* <img
-            src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8="
-            alt="mountain"
-            className="rounded-xl w-full h-auto object-cover shadow-md"
-          /> */}
+          
            <img
             src={viewarticle?.media?.images[0]}
             alt="mountain"
