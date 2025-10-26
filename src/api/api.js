@@ -11,7 +11,7 @@ export const googleAuth = (code) => api.get(`/user/google?code=${encodeURICompon
 export const getAllArticles = () => api.get(`/article/all`);
 export const deleteArticle = (id) => api.delete(`/article/delete/${id}`);
 export const createArticle = () => api.post(`/article/create`);
-export const updateArticle = (id,contentType) => api.put(`/article/update/${id}`,{contentType});
+export const updateArticle = (id) => api.put(`/article/update/${id}`);
 export const ViewArticles = (id) => api.get(`/article/get/${id}`);
 export const addComment = (id, data) =>api.post(`/comment/create/${id}`, data);
 export const likeArticle = (id, userId) =>api.post(`/comment/like/${id}`, {userId});

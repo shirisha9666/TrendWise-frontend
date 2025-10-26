@@ -12,10 +12,10 @@ const ArticleEdit=()=>{
   const navigate=useNavigate()
   const {id}=useParams()
 
-  const handleSave = async () => {
+  const handleUpdate = async (id) => {
     try {
       setLoading(true)
-      const response = await updateArticle(id,contentType);
+      const response = await updateArticle(id);
       if (response.status === 200) {
      
         setContentType("");

@@ -16,8 +16,8 @@ export default function UserHistoryComments() {
   const { allcomment, getusercomment } = useArticle();
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const [isloadingedit,setIsloadingedit]=useState(null)
-    const [isloadingdel,setIsloadingdel]=useState(null)
+  const [isloadingedit, setIsloadingedit] = useState(null);
+  const [isloadingdel, setIsloadingdel] = useState(null);
 
   const { id } = useParams();
 
@@ -25,7 +25,7 @@ export default function UserHistoryComments() {
     setIsEditing(true);
   };
   const handleSave = async (id) => {
-    setIsloadingedit(id)
+    setIsloadingedit(id);
     try {
       const data = {
         comment,
@@ -46,14 +46,14 @@ export default function UserHistoryComments() {
       console.log("error", error);
       const msg = error.response?.data?.message || "Something went wrong";
       toast.error(msg);
-    }finally{
-      setIsloadingedit(null)
+    } finally {
+      setIsloadingedit(null);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      setIsloadingdel(id)
+      setIsloadingdel(id);
       const response = await delteComment(id);
       if (response.status === 200) {
         await getusercomment(user._id);
@@ -67,8 +67,8 @@ export default function UserHistoryComments() {
       console.error("Error fetching articles:", error.message);
       console.error(msg || "Somthing wrong while deleting comment");
       return [];
-    }finally{
-      setIsloadingdel(null)
+    } finally {
+      setIsloadingdel(null);
     }
   };
 
@@ -111,10 +111,17 @@ export default function UserHistoryComments() {
               >
                 {/* Image */}
                 <img
-                  onClick={() => navigate(`/article/${commentv.slug}/${commentv.articleId._id}`)}
-                      src={commentv?.articleId?.meta?.ogImage || commentv?.articleId?.media?.images?.[0] || "/default.jpg"}
-  alt={commentv?.articleId?.title}
-
+                  onClick={() =>
+                    navigate(
+                      `/article/${commentv.slug}/${commentv.articleId._id}`
+                    )
+                  }
+                  src={
+                    commentv?.articleId?.meta?.ogImage ||
+                    commentv?.articleId?.media?.images?.[0] ||
+                    "/default.jpg"
+                  }
+                  alt={commentv?.articleId?.title}
                   className="w-full h-64 object-cover cursor-pointer"
                 />
 
@@ -157,8 +164,9 @@ export default function UserHistoryComments() {
                             onClick={handleEdit}
                             className="px-3 cursor-pointer py-1 bg-yellow-100 text-yellow-800 rounded-md hover:bg-yellow-200 transition text-sm font-medium"
                           >
-                            {isloadingedit===commentv._id?"Updating...":"Update"}
-                            
+                            {isloadingedit === commentv._id
+                              ? "Updating..."
+                              : "Update"}
                           </button>
                         )}
 
@@ -167,8 +175,9 @@ export default function UserHistoryComments() {
                             onClick={() => handleDelete(commentv._id)}
                             className="px-3 py-1 cursor-pointer bg-red-100 text-red-800 rounded-md hover:bg-red-200 transition text-sm font-medium"
                           >
-                            {isloadingdel===commentv._id?"Deleting....":"Delete"}
-                            
+                            {isloadingdel === commentv._id
+                              ? "Deleting...."
+                              : "Delete"}
                           </button>
                         )}
                       </div>

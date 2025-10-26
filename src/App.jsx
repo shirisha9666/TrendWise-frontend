@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
       <Header />
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-4 py-8 mt-5">
         {/* <ArticleFeed/> */}
 
         <BrowserRouter>
@@ -46,17 +46,24 @@ function App() {
 
             <Route
               path="/comment/history/:id"
-              element={<UserHistoryComments />}
+              element={
+                user?.role === "user" ? (
+                  <UserHistoryComments />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
             />
-            {user?.role === "admin" && (
-              <Route path="/Admin" element={<AdminTable />} />
-            )}
-            {user?.role === "admin" && (
-              <Route path="/article/create" element={<ArticleCreate />} />
-            )}
-            {user?.role === "admin" && (
-              <Route path="/article/update/:id" element={<ArticleEdit />} />
-            )}
+            <Route
+              path="/admin"
+              element={
+                user?.role === "admin" ? (
+                  <AdminTable />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
           </Routes>
         </BrowserRouter>
       </main>
