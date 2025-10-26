@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const AdminTable = () => {
   const navigate = useNavigate();
-  const { allarticle, getAllArticlesdata, deleteArticleData } = useArticle();
+  const { allarticle, getAllArticlesdata, deleteArticleData,adminDelloading } = useArticle();
   const [loading, setLoading] = useState(false);
   const [editloading, setEditLoading] = useState(null);
   const [articles, setArticles] = useState(["helloword", "helo"]);
@@ -106,7 +106,8 @@ const AdminTable = () => {
                   onClick={() => deleteArticleData(article._id)}
                   className="px-3 py-1 bg-red-100 text-red-800 rounded-md hover:bg-red-200 transition text-sm cursor-pointer"
                 >
-                  Delete
+                  {adminDelloading===article._id?"Deleting":"Delete"}
+                  
                 </button>
                 <button
                   onClick={() =>
@@ -115,7 +116,6 @@ const AdminTable = () => {
                   className="px-3 py-1 bg-green-100 text-yellow-800 
                     rounded-md hover:bg-green-200 transition text-sm cursor-pointer"
                 >
-                  View
                 </button>
               </td>
             </tr>
