@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 export default function ArticleFeed() {
   const { user } = useUser();
-  const { allarticle, getAllArticlesdata ,viewArticlesdata} = useArticle();
+  const { allarticle, getAllArticlesdata ,articleLoading} = useArticle();
   console.log("allarticle", allarticle);
   const navigate = useNavigate();
   const [showInput, setShowInput] = useState(false);
@@ -58,7 +58,7 @@ export default function ArticleFeed() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gray-50 py-10 px-4">
       <div className="w-full max-w-3xl space-y-8 overflow-y-auto">
-        {allarticle.map((article) => (
+        {articleLoading?<div>loading data..... </div>:allarticle.map((article) => (
           <div
             key={article.id}
             className="bg-white shadow-sm rounded-2xl overflow-hidden hover:shadow-md transition"
@@ -126,6 +126,7 @@ export default function ArticleFeed() {
             </div>
           </div>
         ))}
+      
       </div>
     </div>
   );

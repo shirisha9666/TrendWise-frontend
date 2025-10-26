@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import ArticleDetail from "./components/article/ArticleDetail";
 import Header from "./components/Header";
 import ArticleFeed from "./components/article/ArticleFeed";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter  as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import GoogleLogin from "./components/user/GoogleLogin";
 import { GoogleOAuthProvider } from "@react-oauth/google";

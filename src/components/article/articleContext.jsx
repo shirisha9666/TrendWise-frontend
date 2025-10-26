@@ -25,6 +25,7 @@ export const ArticleProvider = ({ children }) => {
   const [delcommentdetails, setdelcommentDetails] = useState("");
   const [allcomment, setAllComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [articleLoading,setArticleLoding]=useState(false)
   const viewArticlesdata = async (id) => {
     try {
       const response = await ViewArticles(id);
@@ -44,6 +45,7 @@ export const ArticleProvider = ({ children }) => {
 
   const getAllArticlesdata = async () => {
     try {
+      setArticleLoding(true)
       const response = await getAllArticles();
       if (response.status === 200) {
         setAllArticleData(response.data.article);
@@ -54,6 +56,8 @@ export const ArticleProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching articles:", error.message);
       return [];
+    }finally{
+      setArticleLoding(false)
     }
   };
 
@@ -108,7 +112,7 @@ export const ArticleProvider = ({ children }) => {
         viewArticlesdata,
         viewarticle,
         deleteArticleData,
-      
+      articleLoading,
         allcomment,
         getusercomment,
       }}
